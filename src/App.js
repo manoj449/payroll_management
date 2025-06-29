@@ -1,24 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Sidebar from './components/Sidebar';
+import PayrollForm from './components/PayrollForm';
+import PayrollList from './components/PayrollList';
 
 function App() {
+  const [fetchRecords, setFetchRecords] = useState(null);
+
+  const styles = {
+    app: {
+      display: 'flex',
+      minHeight: '100vh',
+    },
+    content: {
+      flex: 1,
+      padding: '20px',
+      background: '#f4f7fa',
+    },
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div style={styles.app}>
+        <Sidebar />
+        <main style={styles.content}>
+          <Routes>
+            <Route
+              path="/"
+              element={<PayrollForm fetchRecords={fetchRecords} />}
+            />
+            <Route
+              path="/records"
+              element={
+                <PayrollList setFetchRecords={setFetchRecords} />
+              }
+            />
+          </Routes>
+        </main>
+      </div>
+    </Router>
   );
 }
 
