@@ -135,7 +135,7 @@ function PayrollList({ setFetchRecords }) {
   const fetchRecords = async () => {
     try {
       setError(null);
-      let url = 'http://localhost:5000/api/payroll/all';
+      let url = 'https://payroll-management-backend.onrender.com';
       const params = new URLSearchParams();
       if (month) params.append('month', month);
       if (year) params.append('year', year);
