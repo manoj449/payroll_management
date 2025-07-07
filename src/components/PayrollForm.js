@@ -33,7 +33,7 @@ function PayrollForm({ fetchRecords, recordToEdit, onCancel }) {
     // Fetch designations from payroll_db.cd_dcd where typecd = 2
     const fetchDesignations = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/cd_dcd?typecd=2');
+        const res = await fetch('https://payroll-management-backend.onrender.com');
         if (!res.ok) throw new Error(`Failed to fetch designations from payroll_db.cd_dcd: ${res.status}`);
         const data = await res.json();
         setDesignations(data.map(item => ({ code: item.code, dcd: item.dcd })));
